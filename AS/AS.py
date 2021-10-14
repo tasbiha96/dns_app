@@ -9,9 +9,8 @@ s.bind(('', localPort))
 while True:
     print ('Waiting to receive input***********************')
     message, clientaddress = s.recvfrom(2048)
-    #print('Message received : ')
+    
     message = message.decode()
-    #print('Decodeed message:',message)
     message = json.loads(message)
     #print('Load:',message)
 

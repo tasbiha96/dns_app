@@ -20,13 +20,13 @@ def Fibonacci(n):
     else:
         return Fibonacci(n-1) + Fibonacci(n-2)
 
-@app.route('/register')
+@app.route('/register', methods = ['GET','PUT'])
 def RegisterFS():
     hostname = request.args.get('hostname') 
     ip = request.args.get('ip')
     as_ip = request.args.get('as_ip')
     as_port =request.args.get('as_port') 
-
+    print(ip , as_ip)
     out_dict = {
         "TYPE": "A",
         "NAME": hostname,
@@ -39,7 +39,7 @@ def RegisterFS():
     return_code , clientaddress = s.recvfrom(2048)
     code = return_code.decode('utf-8')       # recvfrom returns result of type byte. Hence decoding required
     if code == '201':
-        return str(201)
+        return str(201),201
     else:
         return ('Error')
 
